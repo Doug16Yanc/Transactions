@@ -2,6 +2,7 @@ package douglas.transactions.service;
 
 import douglas.transactions.controller.dto.CreateEffectuationDto;
 import douglas.transactions.domain.Effectuation;
+import douglas.transactions.exception.EffectuationAlreadyExistsException;
 import douglas.transactions.repository.EffectuationRepository;
 
 public class EffectuationService {
@@ -16,7 +17,7 @@ public class EffectuationService {
         var effectuationDTO = effectuationRepository.findByEmail(createEffectuationDto.email());
 
         if (effectuationDTO.isPresent()) {
-
+            throw new EffectuationAlreadyExistsException("Effectuation data already exists.");
         }
 
         return effectuationRepository.save(createEffectuationDto.toEffectuation());
