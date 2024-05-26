@@ -3,22 +3,22 @@ package douglas.transactions.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_transaction_type")
-public class TransactionType {
+@Table(name = "tb_effectuation_type")
+public class EffectuationType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "transaction_type_id", unique = true)
+    @Column(name = "effectuation_type_id", unique = true)
     private Long id;
 
     @Column(name = "definition")
     private String definition;
 
-    public TransactionType(){
+    public EffectuationType(){
 
     }
 
-    public TransactionType(Long id, String definition) {
+    public EffectuationType(Long id, String definition) {
         this.id = id;
         this.definition = definition;
     }
@@ -52,8 +52,8 @@ public class TransactionType {
             this.definition = definition;
         }
 
-        public TransactionType get() {
-            return new TransactionType(id, definition);
+        public EffectuationType get() {
+            return new EffectuationType(id, definition);
         }
 
     }

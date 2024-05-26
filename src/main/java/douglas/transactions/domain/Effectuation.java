@@ -5,12 +5,12 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "tb_transaction")
-public class Transaction {
+@Table(name = "tb_effectuation")
+public class Effectuation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "transaction_id", unique = true)
+    @Column(name = "effectuation_id", unique = true)
     private Long id;
 
     @Column(name = "description")
@@ -25,12 +25,20 @@ public class Transaction {
     @Column(name = "balance")
     private BigDecimal balance = BigDecimal.ZERO;
 
-    @JoinColumn(name = "transaction_type_id")
+    @JoinColumn(name = "effectuation_type_id")
     @ManyToOne
-    private TransactionType transactionType;
+    private EffectuationType transactionType;
 
-    public Transaction() {
+    public Effectuation() {
 
+    }
+
+    public Effectuation(String description, String email, String password, BigDecimal balance, EffectuationType transactionType) {
+        this.description = description;
+        this.email = email;
+        this.password = password;
+        this.balance = balance;
+        this.transactionType = transactionType;
     }
 
     public Long getId() {
@@ -73,11 +81,11 @@ public class Transaction {
         this.balance = balance;
     }
 
-    public TransactionType getTransactionType() {
+    public EffectuationType getTransactionType() {
         return transactionType;
     }
 
-    public void setTransactionType(TransactionType transactionType) {
+    public void setTransactionType(EffectuationType transactionType) {
         this.transactionType = transactionType;
     }
 }
