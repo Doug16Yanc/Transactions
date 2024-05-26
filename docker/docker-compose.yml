@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql
+    ports:
+      - "33060-33060"
+    expose:
+      - "33060"
+    environment:
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=123
+      - MYSQL_DATABASE=transactions
+      - MYSQL_ROOT_PASSWORD=123
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
