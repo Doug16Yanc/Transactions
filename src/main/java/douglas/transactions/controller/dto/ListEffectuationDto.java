@@ -5,20 +5,21 @@ import douglas.transactions.domain.EffectuationType;
 
 import java.math.BigDecimal;
 
-public record CreateEffectuationDto(
+public record ListEffectuationDto(
+        Long id,
         String description,
         String email,
-        String password,
         BigDecimal balance,
-        EffectuationType.Enum effectuationType
+        EffectuationType effectuationType
 
 ) {
     public Effectuation toEffectuation() {
-        return new Effectuation(
+        return new ListEffectuationDto(
+                id,
                 description,
                 email,
-                password,
-                balance
-        );
+                balance,
+                effectuationType
+        ).toEffectuation();
     }
 }

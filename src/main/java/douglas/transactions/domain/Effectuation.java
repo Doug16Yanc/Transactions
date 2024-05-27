@@ -33,12 +33,11 @@ public class Effectuation {
 
     }
 
-    public Effectuation(String description, String email, String password, BigDecimal balance, EffectuationType transactionType) {
+    public Effectuation(String description, String email, String password, BigDecimal balance) {
         this.description = description;
         this.email = email;
         this.password = password;
         this.balance = balance;
-        this.transactionType = transactionType;
     }
 
     public Long getId() {
@@ -81,11 +80,11 @@ public class Effectuation {
         this.balance = balance;
     }
 
-    public EffectuationType getTransactionType() {
+    public EffectuationType getEffectuationType() {
         return transactionType;
     }
 
-    public void setTransactionType(EffectuationType transactionType) {
+    public void setEffectuationType(EffectuationType transactionType) {
         this.transactionType = transactionType;
     }
 }

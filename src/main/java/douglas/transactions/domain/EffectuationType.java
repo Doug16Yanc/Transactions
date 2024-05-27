@@ -53,7 +53,7 @@ public class EffectuationType {
         }
 
         public EffectuationType get() {
-            return new EffectuationType(id, definition);
+            return new EffectuationType(1L, "owner");
         }
 
     }
