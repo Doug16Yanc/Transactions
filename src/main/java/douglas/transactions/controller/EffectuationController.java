@@ -3,12 +3,10 @@ package douglas.transactions.controller;
 import douglas.transactions.controller.dto.CreateEffectuationDto;
 import douglas.transactions.controller.dto.ListEffectuationDto;
 import douglas.transactions.domain.Effectuation;
-import douglas.transactions.domain.EffectuationType;
 import douglas.transactions.service.EffectuationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.introspector.MissingProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,7 @@ public class EffectuationController {
         return ResponseEntity.ok(effectuation);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("effectuations/{id}")
     public ResponseEntity<Effectuation> findEffectuationById(@PathVariable("id") Long id){
         Optional<Effectuation> effectuation = this.effectuationService.findById(id);
 
@@ -56,7 +54,25 @@ public class EffectuationController {
             return ResponseEntity.noContent().build();
         }
     }
-    @DeleteMapping("/{id}")
+
+    @PutMapping("/effectuations/{id}")
+    public ResponseEntity<Effectuation> updateEffectuation(@PathVariable("id") Long id, @RequestBody CreateEffectuationDto updateEffectuationDto) {
+        Optional<Effectuation> optionalEffectuation = effectuationService.findById(id);
+
+        if (optionalEffectuation.isPresent()) {
+            Effectuation effectuation = optionalEffectuation.get();
+            effectuation.setDescription(updateEffectuationDto.updateEffectuation().getDescription());
+            effectuation.setEmail(updateEffectuationDto.updateEffectuation().getEmail());
+            effectuation.setBalance(updateEffectuationDto.updateEffectuation().getBalance());
+            effectuation.setEffectuationType(updateEffectuationDto.updateEffectuation().getEffectuationType());
+
+            Effectuation updatedEffectuation = effectuationService.updateEffectuation(effectuation);
+            return ResponseEntity.ok(updatedEffectuation);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("/effectuations/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> deleteEffectuationById(@PathVariable Long id) {
         Optional<Effectuation> effectuation = effectuationService.findById(id);

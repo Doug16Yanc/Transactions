@@ -27,7 +27,7 @@ public class Effectuation {
 
     @JoinColumn(name = "effectuation_type_id")
     @ManyToOne
-    private EffectuationType transactionType;
+    private EffectuationType effectuationType;
 
     public Effectuation() {
 
@@ -81,10 +81,10 @@ public class Effectuation {
     }
 
     public EffectuationType getEffectuationType() {
-        return transactionType;
+        return effectuationType;
     }
 
-    public void setEffectuationType(EffectuationType transactionType) {
-        this.transactionType = transactionType;
+    public void setEffectuationType(EffectuationType effectuationType) {
+        this.effectuationType = effectuationType;
     }
 }

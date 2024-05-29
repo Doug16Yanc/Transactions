@@ -39,4 +39,19 @@ public class EffectuationService {
     public void delete(Effectuation effectuation1) {
         effectuationRepository.delete(effectuation1);
     }
+
+    public Effectuation updateEffectuation(Effectuation effectuation) {
+        Optional<Effectuation> optionalEffectuation = effectuationRepository.findById(effectuation.getId());
+        if (optionalEffectuation.isPresent()) {
+            Effectuation existingEffectuation = optionalEffectuation.get();
+            existingEffectuation.setDescription(effectuation.getDescription());
+            existingEffectuation.setEmail(effectuation.getEmail());
+            existingEffectuation.setBalance(effectuation.getBalance());
+            existingEffectuation.setEffectuationType(effectuation.getEffectuationType());
+
+            return effectuationRepository.save(existingEffectuation);
+        } else {
+            throw new RuntimeException("Effectuation not found");
+        }
+    }
 }

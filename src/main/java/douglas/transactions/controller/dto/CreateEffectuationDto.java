@@ -21,4 +21,12 @@ public record CreateEffectuationDto(
                 balance
         );
     }
+    public Effectuation updateEffectuation() {
+        return new Effectuation(
+                description,
+                email,
+                password,
+                balance
+        );
+    }
 }
