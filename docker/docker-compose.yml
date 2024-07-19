@@ -9,7 +9,7 @@ services:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=123
       - MYSQL_DATABASE=transactions
-      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_ROOT_PASSWORD=
     volumes:
       - db_data:/var/lib/mysql
 
